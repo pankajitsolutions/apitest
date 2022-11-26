@@ -38,27 +38,27 @@ class _SignUpScreenState extends State<SignUpScreen> {
           child: Column(
             children: [
               CustomTextWidget(
-                regIdController: regIdController,
+                controller: regIdController,
                 hintText: 'Reg No.',
               ),
               CustomTextWidget(
-                regIdController: pNameController,
+                controller: pNameController,
                 hintText: 'p Name',
               ),
               CustomTextWidget(
-                regIdController: emailController,
+                controller: emailController,
                 hintText: 'Email .',
               ),
               CustomTextWidget(
-                regIdController: mobileController,
+                controller: mobileController,
                 hintText: 'Mobile No.',
               ),
               CustomTextWidget(
-                regIdController: altMobileController,
+                controller: altMobileController,
                 hintText: 'Alt Mobile No.',
               ),
               CustomTextWidget(
-                regIdController: refController,
+                controller: refController,
                 hintText: 'Referral No.',
               ),
               SizedBox(height: height(context) * 0.1),
@@ -76,6 +76,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       }).then((value) {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("User Created Successfully")));
                       });
+                    }else{
+                      ScaffoldMessenger.of(context).showSnackBar
+                        (SnackBar(content: Text("Please fill all the fields")));
+
                     }
                   },
                   child: Text("Sign Up")),
@@ -97,17 +101,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
 class CustomTextWidget extends StatelessWidget {
   const CustomTextWidget({
     Key? key,
-    required this.regIdController,
+    required this.controller,
     required this.hintText,
   }) : super(key: key);
 
-  final TextEditingController regIdController;
+  final TextEditingController controller;
   final String hintText;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
-      controller: regIdController,
+      controller: controller,
       decoration: InputDecoration(hintText: hintText),
     );
   }
